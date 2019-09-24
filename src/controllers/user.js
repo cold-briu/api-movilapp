@@ -11,7 +11,7 @@ exports.create = (req, res) => {
 
     // Create a user
     const user = new User({
-        email: req.body.email || "Untitled User", 
+        email: req.body.email || "Untitled email", 
         password: req.body.password
     });
 
@@ -24,6 +24,8 @@ exports.create = (req, res) => {
             message: err.message || "Some error occurred while creating the User."
         });
     });
+
+    
 };
 
 // Retrieve and return all users from the database.
@@ -58,6 +60,8 @@ exports.findOne = (req, res) => {
             message: "Error retrieving user with id " + req.params.userId
         });
     });
+    
+  
 };
 
 // Update a user identified by the userId in the request
@@ -112,5 +116,27 @@ exports.delete = (req, res) => {
         return res.status(500).send({
             message: "Could not delete User with id " + req.params.userId
         });
+    });
+};
+
+exports.validate = (req, res)=>{
+    const email = req.body.email;
+    const password = req.body.password;
+    
+    User.find({ email,password }, (err, user) => {
+        if(err) { 
+            res.status(500).json({
+                error: 'Server error',
+            });
+        }
+   
+        if(!user) { 
+            res.status(400).json({
+                message: 'User not found'
+            });
+        }else{
+            res.status(200).json(user)
+                console.log("Usuario encontrado" );
+        } 
     });
 };

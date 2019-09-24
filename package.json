@@ -4,8 +4,7 @@
   "description": "api para dar servicios de movilidad",
   "main": "server.js ",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
