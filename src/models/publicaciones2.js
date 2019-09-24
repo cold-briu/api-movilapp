@@ -1,17 +1,18 @@
+// 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const Publicacion = sequelize.define('publicaciones', {
+    const Publicaciones = sequelize.define('Publicaciones', {
         id: {
             type: DataTypes.UUID,
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4
         },
         uid: {
-            type: DataTypes.string(),
+            type: DataTypes.STRING,
             required: true
         },
         esQueja: {
             type: DataTypes.BOOLEAN,
-            default: false
+            defaultValue: false
         },
         categorias: {
             type: DataTypes.STRING,
@@ -31,17 +32,20 @@ module.exports = (sequelize, DataTypes) => {
         },
         likes: {
             type: DataTypes.INTEGER,
-            default: 0
+            defaultValue: 0
         },
         foto: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: "no_foto"
+
         },
         video: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: "no_video"
         },
         respondida: {
             type: DataTypes.BOOLEAN,
-            defaul: false
+            defaultValue: false
         },
         created_at: {
             type: DataTypes.DATE,
@@ -53,17 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         freezeTableName: true, // Model tableName will be the same as the model name
         paranoid: true,
-        underscored: true
-
+        // underscored: true,
     });
-    return Publicacion;
+    return Publicaciones;
 };
-
-
-// User.sync({ force: true }).then(function () {
-//     // Table created
-//     return User.create({
-//         firstName: 'John',
-//         lastName: 'Hancock'
-//     });
-// });

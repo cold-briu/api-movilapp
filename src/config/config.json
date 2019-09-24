@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "sycysfmq",
+    "password": "gGeIP_wg42kJPGim9ECdk5B5-I9dPI7j",
+    "database": "sycysfmq",
+    "host": "salt.db.elephantsql.com",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  }
+}

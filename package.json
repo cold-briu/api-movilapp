@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/cold-briu/api-movilapp#readme",
   "devDependencies": {
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "sequelize-cli": "^5.5.1"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -29,6 +30,8 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^5.19.0"
   }
 }
