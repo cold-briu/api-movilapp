@@ -1,11 +1,11 @@
 const express = require('express')
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const cors = require('cors')
 const app = express()
 
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(bodyParser.json())
 
 //connected with db
 require('./src/database_mongo')
@@ -15,15 +15,14 @@ app.use(express.json())
 app.use(cors())
 
 //routes
-// app.use(require('./src/routes/router'))
+require('./src/routes/user')(app);
+require('./src/routes/publicacion')(app);
+
 app.get('/', (req, res) => {
     res.send("Ésta es la API de movilapp ✌️")
 })
 
-require('./src/routes/user')(app);
-
 //Server
-
 
 app.set('port', process.env.PORT || 3000)
 
