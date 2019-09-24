@@ -9,9 +9,9 @@ app.use(cors())
 
 
 //routes
-app.use(require('./routes/router'))
+app.use(require('./src/routes/router'))
 
-app.set('port', process.env.PORT || 300)
+app.set('port', process.env.PORT || 3000)
 
 
 app.listen(app.get('port'), () => console.log(`listening on ${app.get('port')}... `))
