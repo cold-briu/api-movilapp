@@ -7,3 +7,4 @@ mongoose.connect('mongodb+srv://santiago:santiago123@cluster0-8hukm.mongodb.net/
 .then(db => console.log(`DB is connected`))
     .catch(err => console.error(err));
     
+ 

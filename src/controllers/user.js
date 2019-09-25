@@ -13,7 +13,7 @@ exports.create = (req, res) => {
 
     // Create a user
     const user = new User({
-        email: req.body.email || "Untitled User",
+        email: req.body.email || "Untitled email",
         password: req.body.password
     });
 
@@ -115,4 +115,26 @@ exports.delete = (req, res) => {
                 message: "Could not delete User with id " + req.params.userId
             });
         });
+};
+
+exports.validate = (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    User.find({ email, password }, (err, user) => {
+        if (err) {
+            res.status(500).json({
+                error: 'Server error',
+            });
+        }
+
+        if (!user) {
+            res.status(400).json({
+                message: 'User not found'
+            });
+        } else {
+            res.status(200).json(user)
+            console.log("Usuario encontrado");
+        }
+    });
 };
