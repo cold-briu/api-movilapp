@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const user = require('../controllers/user');
+    const user = require('../controllers/user.controller');
 
     // Create a new User
     app.post('/user', user.create);
@@ -7,7 +7,7 @@ module.exports = (app) => {
     // Retrieve all Users
     app.get('/user', user.findAll);
 
-    //app.post('/user/create', user.validate);
+    app.post('/user/validate', user.validate);
     // Retrieve a single User with userId
     app.get('/user/:userId', user.findOne);
 
@@ -16,5 +16,5 @@ module.exports = (app) => {
 
     // Delete a User with userId
     app.delete('/user/:userId', user.delete);
-    
+
 }

@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const comentario = require('../controllers/comentario');
+    const comentario = require('../controllers/comentario.controller');
 
     app.post('/comentario', comentario.create);
 

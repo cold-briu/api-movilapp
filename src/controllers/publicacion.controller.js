@@ -1,4 +1,4 @@
-const Publicacion = require('../models/publicacion')
+const Publicacion = require('../models/publicacion.model')
 
 // C
 

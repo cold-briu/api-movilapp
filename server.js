@@ -1,11 +1,7 @@
 const express = require('express')
-// const bodyParser = require('body-parser');
 const cors = require('cors')
 const app = express()
-
-
-// app.use(bodyParser.urlencoded({ extended: true }))
-// app.use(bodyParser.json())
+const { port } = require('./src/config')
 
 //connected with db
 require('./src/database_mongo')
@@ -15,9 +11,9 @@ app.use(express.json())
 app.use(cors())
 
 //routes
-require('./src/routes/user')(app);
-require('./src/routes/publicacion')(app);
-require('./src/routes/comentario')(app);
+require('./src/routes/user.route')(app);
+require('./src/routes/publicacion.route')(app);
+require('./src/routes/comentario.route')(app);
 
 
 app.get('/', (req, res) => {
@@ -26,6 +22,6 @@ app.get('/', (req, res) => {
 
 //Server
 
-app.set('port', process.env.PORT || 3000)
+app.set('port', port || 3000)
 
 app.listen(app.get('port'), () => console.log(`listening on ${app.get('port')}... `))
