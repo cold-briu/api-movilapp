@@ -7,7 +7,7 @@ module.exports = (app) => {
     // Retrieve all Users
     app.get('/user', user.findAll);
 
-    app.post('/userValidation', user.validate);
+    //app.post('/user/create', user.validate);
     // Retrieve a single User with userId
     app.get('/user/:userId', user.findOne);
 
