@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-// Create and Save a new user
+
 exports.create = (req, res) => {
     // Validate user
     if(!req.body.password) {
@@ -16,15 +16,26 @@ exports.create = (req, res) => {
     });
 
     // Save user in the database
-    user.save()
-    .then(data => {
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while creating the User."
-        });
+    let email = user.email;
+    User.findOne({email} , (err , otherUser) =>{
+        if(err){
+            console.log("Error");
+            return;
+        }
+        if(!otherUser){
+            // Create and Save a new user
+            user.save()
+                    .then(data => {
+                        res.send(data);
+                    }).catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating the User."
+                        });
+                    });
+        }else{
+            res.status(400).send('User already exits');
+        }
     });
-
     
 };
 
@@ -117,6 +128,19 @@ exports.delete = (req, res) => {
             message: "Could not delete User with id " + req.params.userId
         });
     });
+};
+
+const userExists = (email) =>{
+    User.find({email} , (err , user) =>{
+        if(err){
+            res.status(500).json({
+                error: 'Server error',
+            });
+        }
+        return user;
+        
+    });
+    
 };
 
 exports.validate = (req, res)=>{
