@@ -1,17 +1,20 @@
 {
   "name": "api-movilapp",
-  "version": "1.0.0",
   "description": "api para dar servicios de movilidad",
-  "main": "server.js ",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": "academia geek",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cold-briu/api-movilapp.git"
   },
-  "author": "academia geek",
-  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "bugs": {
     "url": "https://github.com/cold-briu/api-movilapp/issues"
   },
