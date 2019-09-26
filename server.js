@@ -17,6 +17,8 @@ app.use(cors())
 //routes
 require('./src/routes/user')(app);
 require('./src/routes/publicacion')(app);
+require('./src/routes/comentario')(app);
+
 
 app.get('/', (req, res) => {
     res.send("Ésta es la API de movilapp ✌️")

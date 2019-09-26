@@ -32,7 +32,7 @@ exports.read = async (req, res) => {
 exports.update = async (req, res) => {
     try {
         await Publicacion.findOneAndUpdate(
-            { orderId: req.params.id },
+            { _id: req.params.id },
             req.body,
             { new: true },
             (err, updatedPublicacion) =>
@@ -47,7 +47,7 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        await Publicacion.remove({ orderId: req.params.id })
+        await Publicacion.remove({ _id: req.params.id })
         res.json({ mesaje: `Deleted ${req.params.id}` })
     } catch{
         console.log("error on Publicacion delete", err);
