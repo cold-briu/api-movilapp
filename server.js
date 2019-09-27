@@ -1,10 +1,16 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
+
+
 const { port } = require('./src/config')
+
 
 //connected with db
 require('./src/database_mongo')
+
+//connected with socket
+require('./src/socket')
 
 //middlewares
 app.use(express.json())
@@ -24,4 +30,6 @@ app.get('/', (req, res) => {
 
 app.set('port', port || 3000)
 
-app.listen(app.get('port'), () => console.log(`listening on ${app.get('port')}... `))
+app.listen(app.get('port'), () => console.log(`🐚 Server listening on ${app.get('port')}... `))
+
+module.exports = app
