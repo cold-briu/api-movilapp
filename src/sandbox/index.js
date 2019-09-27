@@ -30,22 +30,16 @@ const handleSubmit = () => {
 const handleGeo = () => {
     document.querySelector('#geolocate').addEventListener('click', e => {
 
-        if (!navigator.geolocation) {
-            return alert('su navegador no soporta geo locate')
+        if (!navigator.geolocation)
+            return alert('su navegador no soporta geo locate');
 
-        }
-
-        navigator.geolocation.getCurrentPosition(
-            pos => {
-                console.log('will send ', pos)
+        navigator.geolocation.watchPosition(
+            pos =>
                 socket.emit('new-geo', {
                     lat: pos.coords.latitude,
                     long: pos.coords.longitude
-                })
-            },
-            () => {
-                alert('Unable to fetch location, try again')
-            })
+                }),
+            () => console.log('Unable to fetch location, try again'));
     })
 }
 
@@ -58,13 +52,11 @@ const handleGeo = () => {
 
 
 
-
-handleGeo()
-
 getNewUser()
 
 handleSubmit()
 
+handleGeo()
 
 socket.on('user-connected', name => console.log(`${name} Has Joined!`))
 

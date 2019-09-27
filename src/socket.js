@@ -20,7 +20,7 @@ io.on('connection', socket => {
 
     socket.on('new-user', name => {
         users[socket.id] = { name }
-        console.log(`· · @${name} Se ha conecto`)
+        console.log(`· · @${name} Se ha conectado`)
         socket.broadcast.emit('user-connected', name)
     })
 
