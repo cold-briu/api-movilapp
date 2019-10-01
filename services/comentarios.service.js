@@ -31,7 +31,7 @@ class ComentariosService {
         return createComentarioId;
     }
 
-    async updateOne({ docId, data }) {
+    async updateOne(docId, data) {
         const updateComentarioId = await this.mongoDB.update(this.collection,
             docId,
             data
@@ -40,7 +40,7 @@ class ComentariosService {
         return updateComentarioId;
     }
 
-    async deleteOne({ docId }) {
+    async deleteOne(docId) {
         const deletedComentarioId = await this.mongoDB.delete(
             this.collection,
             docId

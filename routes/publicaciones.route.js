@@ -58,7 +58,7 @@ function publicacionesApi(app) {
             let data = req.body
             let id = req.params.id
 
-            await publicacionesService.updateOne({ id, data })
+            await publicacionesService.updateOne(id, data)
             res.status(201).send("updated :3").end()
         } catch (err) {
             next(err);
@@ -68,8 +68,7 @@ function publicacionesApi(app) {
     router.delete('/:id', async (req, res, next) => {
         try {
             let id = req.params.id
-
-            await publicacionesService.deleteOne({ id })
+            await publicacionesService.deleteOne(id)
             res.status(201).send("deleted :3").end()
         } catch (err) {
             next(err);

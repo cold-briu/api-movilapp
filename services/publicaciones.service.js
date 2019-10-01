@@ -31,7 +31,8 @@ class PublicacionesService {
         return createPublicacionId;
     }
 
-    async updateOne({ docId, data }) {
+    async updateOne(docId, data) {
+
         const updatePublicacionId = await this.mongoDB.update(this.collection,
             docId,
             data
@@ -40,7 +41,7 @@ class PublicacionesService {
         return updatePublicacionId;
     }
 
-    async deleteOne({ docId }) {
+    async deleteOne(docId) {
         const deletedPublicacionId = await this.mongoDB.delete(
             this.collection,
             docId

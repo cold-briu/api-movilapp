@@ -58,7 +58,7 @@ function comentariosApi(app) {
             let data = req.body
             let id = req.params.id
 
-            await comentariosService.updateOne({ id, data })
+            await comentariosService.updateOne(id, data)
             res.status(201).send("updated :3").end()
         } catch (err) {
             next(err);
@@ -69,7 +69,7 @@ function comentariosApi(app) {
         try {
             let id = req.params.id
 
-            await comentariosService.deleteOne({ id })
+            await comentariosService.deleteOne(id)
             res.status(201).send("deleted :3").end()
         } catch (err) {
             next(err);
