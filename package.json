@@ -1,10 +1,10 @@
 {
-    "name": "appengine-hello-world",
-    "description": "Simple Hello World Node.js sample for Google App Engine Standard Environment.",
+    "name": "movial-app",
+    "description": "la nabue",
     "version": "0.0.1",
     "private": true,
-    "license": "Apache-2.0",
-    "author": "Google Inc.",
+    "license": "MIT",
+    "author": "Academia Geek",
     "repository": {
         "type": "git",
         "url": "https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git"
