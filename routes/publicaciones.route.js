@@ -31,9 +31,50 @@ function publicacionesApi(app) {
         }
     })
 
+    router.post('/add', async (req, res, next) => {
+        try {
+            let data = req.body
+            await publicacionesService.createOne({ data })
+            res.status(201).send("melos :3")
+        } catch (err) {
+            next(err);
+        }
+    })
 
 
+    router.post('/addMany', async (req, res, next) => {
+        try {
+            let data = req.body
+            await publicacionesService.createMany({ data })
+            res.status(201).send(`added ${data.length} entries`).end()
+        } catch (err) {
+            next(err);
+        }
+    })
 
+
+    router.put('/:id', async (req, res, next) => {
+        try {
+            let data = req.body
+            let id = req.params.id
+
+            await publicacionesService.updateOne({ id, data })
+            res.status(201).send("updated :3").end()
+        } catch (err) {
+            next(err);
+        }
+    })
+
+    router.delete('/:id', async (req, res, next) => {
+        try {
+            let id = req.params.id
+
+            await publicacionesService.deleteOne({ id })
+            res.status(201).send("deleted :3").end()
+        } catch (err) {
+            next(err);
+        }
+    })
 
 
 
