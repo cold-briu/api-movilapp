@@ -5,12 +5,16 @@ const cors = require('cors')
 const app = express()
 
 const publicacionesRoute = require('./routes/publicaciones.route')
+const comentariosRoute = require('./routes/comentarios.route')
 
 // middlewares
+
 app.use(express.json()).use(cors())
 
 //routes
 publicacionesRoute(app)
+comentariosRoute(app)
+
 
 app.get('/', (req, res) => {
   res
