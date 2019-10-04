@@ -31,6 +31,17 @@ function comentariosApi(app) {
         }
     })
 
+    router.get('/varios/:id', async (req, res, next) => {// read one
+        try {
+            const data = await comentariosService.getMany(req.params.id);
+            res.send(data)
+        } catch (err) {
+            next(err);
+
+        }
+    })
+
+
     router.post('/add', async (req, res, next) => {
         try {
             let data = req.body
