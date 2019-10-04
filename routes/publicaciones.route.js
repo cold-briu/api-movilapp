@@ -34,7 +34,7 @@ function publicacionesApi(app) {
     router.post('/add', async (req, res, next) => {
         try {
             let data = req.body
-            await publicacionesService.createOne({ data })
+            await publicacionesService.createOne(data)
             res.status(201).send("melos :3")
         } catch (err) {
             next(err);
@@ -45,7 +45,7 @@ function publicacionesApi(app) {
     router.post('/addMany', async (req, res, next) => {
         try {
             let data = req.body
-            await publicacionesService.createMany({ data })
+            await publicacionesService.createMany(data)
             res.status(201).send(`added ${data.length} entries`).end()
         } catch (err) {
             next(err);

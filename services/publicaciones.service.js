@@ -1,9 +1,11 @@
 const MongoLib = require('../lib/mongo');
+const { publicacionesCollectionName } = require('../config/config')
+
 
 class PublicacionesService {
 
     constructor() {
-        this.collection = 'publicaciones';
+        this.collection = publicacionesCollectionName;
         this.mongoDB = new MongoLib();
     }
 
@@ -19,13 +21,13 @@ class PublicacionesService {
         return product || "not found";
     }
 
-    async createOne({ data }) {
+    async createOne(data) {
         const createPublicacionId = await this.mongoDB.create(this.collection, data);
 
         return createPublicacionId;
     }
 
-    async createMany({ data }) {
+    async createMany(data) {
         const createPublicacionId = await this.mongoDB.createMany(this.collection, data);
 
         return createPublicacionId;
