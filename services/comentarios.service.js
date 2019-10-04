@@ -19,10 +19,12 @@ class ComentariosService {
         return product || "not found";
     }
 
-    async getMany(postId) {
-        const comments = await this.mongoDB.get(this.collection, postId);
+    async getVarios(postId) {
 
-        return comments || "not found";
+        const comments = await this.mongoDB.getManyComments(this.collection, postId);
+
+        return comments;
+
     }
 
     async createOne({ data }) {

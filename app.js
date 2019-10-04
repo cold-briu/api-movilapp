@@ -19,7 +19,7 @@ comentariosRoute(app)
 app.get('/', (req, res) => {
   res
     .status(200)
-    .send('Hello, world!')
+    .send('Esta es la api de Movil App')
     .end();
 });
 
