@@ -1,7 +1,7 @@
 const { validateUser, validateLogin } = require("../utils/validations/user");
 
 function validUser(req, res, next) {
-  const { error } = validateUser(req.body);
+  const { error } = validateUser(req.body.data);
   if (error) return next(error);
 
   next();

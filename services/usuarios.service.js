@@ -8,14 +8,13 @@ class Users {
   }
 
   async create({ data }) {
-    const salt = bcrypt.genSalt(10);
-    data.password = bcrypt.hash(data.password, salt);
+    const salt = await bcrypt.genSalt(10);
+    data.password = await bcrypt.hash(data.password, salt);
     const user = await this.MongoDB.create(this.collection, data);
     return user;
   }
 
-  async getAll({ tags }) {
-    const query = tags && { $in: { tags } };
+  async getAll(query) {
     const users = await this.MongoDB.getAll(this.collection, query);
     return users || ["not found"];
   }

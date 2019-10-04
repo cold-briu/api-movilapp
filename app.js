@@ -6,6 +6,8 @@ const app = express();
 
 const publicacionesRoute = require("./routes/publicaciones.route");
 const comentariosRoute = require("./routes/comentarios.route");
+const loginRoute = require("./routes/login.route");
+const usuariosRoute = require("./routes/usuarios.route");
 
 // middlewares
 
@@ -17,7 +19,8 @@ require("./utils/strategies/basic");
 //routes
 publicacionesRoute(app);
 comentariosRoute(app);
-require("./routes/usuarios.route");
+loginRoute(app);
+usuariosRoute(app);
 
 app.get("/", (req, res) => {
   res

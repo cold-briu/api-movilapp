@@ -35,14 +35,13 @@ passport.use(
         if (error)
           return done(null, false, { message: error.details[0].message });
 
-        const user = new UserService().getAll({ tags: { email, password } });
-        if (!user)
+        const user = await new UserService().getAll({ email });
+        if (user.length <= 0)
           return done(null, false, { message: "email or password is wrong" });
 
-        const validPassword = await bcrypt.compare(password, user.password);
+        const validPassword = await bcrypt.compare(password, user[0].password);
         if (!validPassword)
           return done(null, false, { message: "email or password is wrong" });
-
         done(null, user, { message: "Right" });
       } catch (err) {
         return done(err);
