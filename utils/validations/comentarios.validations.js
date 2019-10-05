@@ -8,10 +8,10 @@ module.exports = (data) => {
             .max(50)
             .required(),
 
-        titulo: joi
+        postid: joi
             .string()
-            .min(3)
-            .max(60)
+            .min(2)
+            .max(50)
             .required(),
 
         ubicacion: joi
@@ -31,23 +31,7 @@ module.exports = (data) => {
         likes: joi
             .integer()
             .min(0)
-            .default(0),
-
-        esQueja: joi
-            .bool()
-            .default(false),
-
-        entidades: joi
-            .array()
-            .required(),
-
-        categorias: joi
-            .array()
-            .required(),
-
-        comentarios: joi
-            .array()
-            .default([]),
+            .default(0)
     });
 
     return PublicacionSchema.validate(data);

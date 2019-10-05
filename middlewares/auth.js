@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 const { authSecretKey } = require("../config/config");
 
-module.exports = function(req, res, next) {
+module.exports = function (req, res, next) {
   const token = req.header("auth-token");
 
-  if (!token) return res.status(401).send("access denied");
+  if (!token) return res.status(401).send("access denied!! 😡");
   try {
     const verified = jwt.verify(token, authSecretKey);
     req.user = verified;
