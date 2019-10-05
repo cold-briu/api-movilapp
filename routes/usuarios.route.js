@@ -29,7 +29,7 @@ function usuariosApi(app) {
   router
     .route("/:id")
     .all(auth)
-    .post(async (req, res, next) => {
+    .get(async (req, res, next) => {
       try {
         const user = await userService.getOne(req.params.id);
         if (!user) return res.status(400).send("user not found");
