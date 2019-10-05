@@ -1,9 +1,8 @@
-const express = require('express');
+const router = require("express").Router();
+
 const PublicacionesService = require('../services/publicaciones.service');
 
 function publicacionesApi(app) {
-
-    const router = express.Router();
 
     app.use('/api/publicaciones', router);
 

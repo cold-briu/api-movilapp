@@ -1,6 +1,6 @@
 const joi = require("@hapi/joi");
 
-function validateUser(data) {
+function validateUserData(data) {
   const Schema = joi.object({
     name: joi
       .string()
@@ -28,7 +28,7 @@ function validateUser(data) {
   return Schema.validate(data);
 }
 
-function validateLogin(data) {
+function validateLoginData(data) {
   const Schema = joi.object({
     email: joi
       .string()

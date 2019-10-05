@@ -1,9 +1,10 @@
 const MongoLib = require('../lib/mongo');
+const { comentariosCollectionName } = require('../config/config')
 
 class ComentariosService {
 
     constructor() {
-        this.collection = 'comentarios';
+        this.collection = comentariosCollectionName;
         this.mongoDB = new MongoLib();
     }
 

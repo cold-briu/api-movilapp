@@ -1,13 +1,15 @@
 const MongoLib = require("../lib/mongo");
 const bcrypt = require("bcrypt");
+const { usersCollectionName } = require('../config/config')
 
-class Users {
+
+class UsersService {
   constructor() {
-    this.collection = "users";
+    this.collection = usersCollectionName;
     this.MongoDB = new MongoLib();
   }
 
-  async create({ data }) {
+  async register({ data }) {
     const salt = await bcrypt.genSalt(10);
     data.password = await bcrypt.hash(data.password, salt);
     const user = await this.MongoDB.create(this.collection, data);
@@ -35,4 +37,4 @@ class Users {
   }
 }
 
-module.exports = Users;
+module.exports = UsersService;

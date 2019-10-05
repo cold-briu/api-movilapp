@@ -1,10 +1,11 @@
 const passport = require("passport");
 const { Strategy, ExtractJwt } = require("passport-jwt");
 const LocalStrategy = require("passport-local");
-const config = require("../../config/config");
-const { validateLogin } = require("../validations/user");
-const UserService = require("../../services/usuarios.service");
 const bcrypt = require("bcrypt");
+
+const config = require("../../config/config");
+const UserService = require("../../services/usuarios.service");
+const { validateLoginData } = require("../validations/user.validations");
 
 passport.use(
   new Strategy(
@@ -31,7 +32,7 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const { error } = validateLogin({ email, password });
+        const { error } = validateLoginData({ email, password });
         if (error)
           return done(null, false, { message: error.details[0].message });
 

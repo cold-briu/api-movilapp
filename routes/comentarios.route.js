@@ -1,9 +1,7 @@
-const express = require('express');
+const router = require("express").Router();
 const ComentariosService = require('../services/comentarios.service');
 
 function comentariosApi(app) {
-
-    const router = express.Router();
 
     app.use('/api/comentarios', router);
 
