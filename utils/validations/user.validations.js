@@ -46,4 +46,4 @@ function validateLoginData(data) {
   return Schema.validate(data);
 }
 
-module.exports = { validateLogin, validateUser };
+module.exports = { validateUserData, validateLoginData };

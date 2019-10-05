@@ -13,5 +13,5 @@ module.exports = {
 
   cors: process.env.CORS,
   ioPort: process.env.SOCKET_PORT,
-  tokenKey: process.env.TOKEN_KEY
+  authSecretKey: process.env.TOKEN_KEY
 };

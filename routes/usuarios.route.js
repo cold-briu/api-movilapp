@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const UsersService = require("../services/usuarios.service");
-const auth = require("../middleware/auth");
+const auth = require("../middlewares/auth");
 const { checkValidUserData } = require("../middlewares/usuarios");
 
 function usuariosApi(app) {

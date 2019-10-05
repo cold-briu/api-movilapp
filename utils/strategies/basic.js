@@ -1,16 +1,16 @@
-const passport = require("passport");
-const { Strategy, ExtractJwt } = require("passport-jwt");
-const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const { Strategy, ExtractJwt } = require("passport-jwt");
 
-const config = require("../../config/config");
 const UserService = require("../../services/usuarios.service");
+const { authSecretKey } = require("../../config/config");
 const { validateLoginData } = require("../validations/user.validations");
 
 passport.use(
   new Strategy(
     {
-      secretOrKey: config.authSecretKey,
+      secretOrKey: authSecretKey || "datos_quemados_mala_practica",
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     },
     async (token, done) => {
