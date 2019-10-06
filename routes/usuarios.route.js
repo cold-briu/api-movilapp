@@ -39,7 +39,7 @@ module.exports = function usuariosApi(app) {
       } else if (user.password !== password) {
         return res.status(400).json({ authRes: "wrong pass" });
       }
-      res.status(200).send(true);
+      res.status(200).send(user._id);
     } catch (err) {
       next(err);
     }
