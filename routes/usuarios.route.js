@@ -35,9 +35,9 @@ module.exports = function usuariosApi(app) {
       const user = await userService.login(email);
 
       if (!user) {
-        return res.status(204).json({ authRes: "email not found" });
+        return res.status(400).json({ authRes: "email not found" });
       } else if (user.password !== password) {
-        return res.status(204).json({ authRes: "wrong pass" });
+        return res.status(400).json({ authRes: "wrong pass" });
       }
       res.status(200).send(true);
     } catch (err) {
