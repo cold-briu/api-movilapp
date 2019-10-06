@@ -16,6 +16,11 @@ class UsersService {
     return user;
   }
 
+  async login(email) {
+    const user = await this.MongoDB.login(this.collection, email);
+    return user;
+  }
+
   async getAll(query) {
     const users = await this.MongoDB.getAll(this.collection, query);
     return users || ["not found"];

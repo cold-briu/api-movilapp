@@ -32,7 +32,20 @@
 
 - **DELETE:** Elimina un user con la id indicada 
 
-**FALTA RUTA LOGIN**
+
+### 3. En la ruta '/login'  
+
+- **POST:** Verifica si existe user by email y compara passwords
+
+  **Debe seguir la siguiente estructura:**
+        
+        {
+            email: str,
+            password: str
+        }
+
+
+
 
 ___
 

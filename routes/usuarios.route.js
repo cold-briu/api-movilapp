@@ -29,6 +29,22 @@ module.exports = function usuariosApi(app) {
       }
     });
 
+  router.post('/login', async (req, res, next) => {
+    try {
+      const { email, password } = req.body
+      console.log(email)
+      const user = await userService.login(email);
+
+      if (!user) {
+        return res.status(400).send("user email not found");
+      } else if (user.password !== password) {
+        return res.status(400).send("wrong pass");
+      }
+      res.status(200).send(true);
+    } catch (err) {
+      next(err);
+    }
+  })
 
 
   router.route("/:id")
