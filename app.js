@@ -1,5 +1,6 @@
 "use strict";
 const { port } = require("./config/config");
+const path = require('path')
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -25,9 +26,10 @@ usuariosRoute(app);
 app.get("/", (req, res) => {
   res
     .status(200)
-    .send('Esta es la api de Movil App')
-    .end();
+    .sendFile(path.join(__dirname, 'readme.md'));
 });
+
+
 
 app.listen(port || process.env.port, () => {
   console.log(`App listening on port ${port}`);

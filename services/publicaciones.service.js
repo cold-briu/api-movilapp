@@ -2,7 +2,7 @@ const MongoLib = require('../lib/mongo');
 const { publicacionesCollectionName } = require('../config/config')
 
 
-class PublicacionesService {
+module.exports = class PublicacionesService {
 
     constructor() {
         this.collection = publicacionesCollectionName;
@@ -10,7 +10,7 @@ class PublicacionesService {
     }
 
     async getAll({ tags }) {
-        const query = tags && { $in: { tags } }
+        const query = "tags"// tags && { $in: { tags } }
         const data = await this.mongoDB.getAll(this.collection, query)
         return data || ["not found"]
     }
@@ -21,13 +21,18 @@ class PublicacionesService {
         return product || "not found";
     }
 
-    async createOne({ data }) {
+    async getByUserId(userId) {
+        const posts = await this.mongoDB.getManyPosts(this.collection, userId);
+        return posts;
+    }
+
+    async createOne(data) {
         const createPublicacionId = await this.mongoDB.create(this.collection, data);
 
         return createPublicacionId;
     }
 
-    async createMany({ data }) {
+    async createMany(data) {
         const createPublicacionId = await this.mongoDB.createMany(this.collection, data);
 
         return createPublicacionId;
@@ -44,14 +49,15 @@ class PublicacionesService {
     }
 
     async deleteOne(docId) {
-        const deletedPublicacionId = await this.mongoDB.delete(
+        const deletedId = await this.mongoDB.delete(
             this.collection,
             docId
         );
 
-        return deletedPublicacionId;
+        return deletedId;
     }
+
+
 
 }
 
-module.exports = PublicacionesService;

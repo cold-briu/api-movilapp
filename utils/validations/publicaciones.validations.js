@@ -1,6 +1,6 @@
 const joi = require("@hapi/joi");
 
-module.exports = (data) => {
+function publicacionSchemaValidator(data) {
     const PublicacionSchema = joi.object({
         uid: joi
             .string()
@@ -29,6 +29,7 @@ module.exports = (data) => {
             .default("no_foto_url"),
 
         likes: joi
+            .number()
             .integer()
             .min(0)
             .default(0),
@@ -47,8 +48,9 @@ module.exports = (data) => {
 
         comentarios: joi
             .array()
-            .default([]),
+            .default([""]),
     });
 
     return PublicacionSchema.validate(data);
 }
+module.exports = { publicacionSchemaValidator }

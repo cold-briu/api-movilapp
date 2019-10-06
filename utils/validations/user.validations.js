@@ -1,6 +1,6 @@
 const joi = require("@hapi/joi");
 
-function validateUserData(data) {
+function usersSchemaValidator(data) {
   const Schema = joi.object({
     name: joi
       .string()
@@ -46,4 +46,4 @@ function validateLoginData(data) {
   return Schema.validate(data);
 }
 
-module.exports = { validateUserData, validateLoginData };
+module.exports = { usersSchemaValidator, validateLoginData };

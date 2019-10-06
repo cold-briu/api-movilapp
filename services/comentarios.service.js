@@ -1,7 +1,7 @@
 const MongoLib = require('../lib/mongo');
 const { comentariosCollectionName } = require('../config/config')
 
-class ComentariosService {
+module.exports = class ComentariosService {
 
     constructor() {
         this.collection = comentariosCollectionName;
@@ -20,7 +20,7 @@ class ComentariosService {
         return product || "not found";
     }
 
-    async getVarios(postId) {
+    async getByPostId(postId) {
 
         const comments = await this.mongoDB.getManyComments(this.collection, postId);
 
@@ -28,13 +28,13 @@ class ComentariosService {
 
     }
 
-    async createOne({ data }) {
+    async createOne(data) {
         const createComentarioId = await this.mongoDB.create(this.collection, data);
 
         return createComentarioId;
     }
 
-    async createMany({ data }) {
+    async createMany(data) {
         const createComentarioId = await this.mongoDB.createMany(this.collection, data);
 
         return createComentarioId;
@@ -50,14 +50,12 @@ class ComentariosService {
     }
 
     async deleteOne(docId) {
-        const deletedComentarioId = await this.mongoDB.delete(
+        const deletedId = await this.mongoDB.delete(
             this.collection,
             docId
         );
-
-        return deletedComentarioId;
+        return deletedId;
     }
 
 }
 
-module.exports = ComentariosService;

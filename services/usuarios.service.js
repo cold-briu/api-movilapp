@@ -9,9 +9,9 @@ class UsersService {
     this.MongoDB = new MongoLib();
   }
 
-  async register({ data }) {
-    const salt = await bcrypt.genSalt(10);
-    data.password = await bcrypt.hash(data.password, salt);
+  async register(data) {
+    // const salt = await bcrypt.genSalt(10);
+    // data.password = await bcrypt.hash(data.password, salt);
     const user = await this.MongoDB.create(this.collection, data);
     return user;
   }
