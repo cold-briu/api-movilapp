@@ -123,3 +123,13 @@ ___
 - **DELETE:** Elimina comentario con la id indicada 
 
 **FALTA VALIDAR ADD MANY, DEFAULT NO FUNCIONA**
+
+
+### 3. En la ruta '/getByPostId/:id'
+
+    utiliza el postid (doc _id de una publicacion)
+
+- **GET :** Devuelve los comentarios con el postid indicado 
+
+**FALTA VALIDAR ADD MANY, DEFAULT NO FUNCIONA**
+
