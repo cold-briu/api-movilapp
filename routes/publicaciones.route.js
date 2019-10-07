@@ -14,7 +14,7 @@ module.exports = function publicacionesApi(app) {
             try {
                 const data = await publicacionesService.getAll(req.query);
                 if (data.length < 1) return res.status(400).send("publicaciones not found").end();
-                res.status(200).send(data).end();
+                res.status(200).send(data)
             } catch (err) {
                 next(err);
             }
