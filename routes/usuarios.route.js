@@ -22,8 +22,8 @@ module.exports = function usuariosApi(app) {
     })
     .post(checkDataTypes(usersSchemaValidator), async (req, res, next) => {
       try {
-        await userService.register(req.body);
-        res.status(200).send({ message: "Tamos melos" });
+        const user = await userService.register(req.body);
+        res.status(200).send(user);
       } catch (err) {
         next(err);
       }
