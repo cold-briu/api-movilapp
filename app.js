@@ -31,9 +31,31 @@ app.get("/", (req, res) => {
 
 
 
-app.listen(port || process.env.port, () => {
+const server = app.listen(port || process.env.port, () => {
   console.log(`App listening on port ${port}`);
   console.log("Press Ctrl+C to quit.");
 });
+
+
+
+// QUIERO APRENDER A DESACOPLAR UN HDP SOCKET NEIDER!!!
+
+const io = require('socket.io')(server)
+
+console.log('now it`s time to sokete')
+
+io.on('connection', socket => {
+
+  console.log(`··· socket: ${socket.id} has connected`)
+
+  socket.on('new-delta', location => {
+    console.log("llegó", location)
+  })
+
+  socket.on('disconnect', () => {
+    console.log(`!!! socket: ${socket.id} has DISconnected`);
+  });
+});
+
 
 module.exports = app;
