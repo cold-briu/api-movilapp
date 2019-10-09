@@ -1,6 +1,6 @@
 "use strict";
 const { port } = require("./config/config");
-const path = require('path')
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -24,38 +24,49 @@ loginRoute(app);
 usuariosRoute(app);
 
 app.get("/", (req, res) => {
-  res
-    .status(200)
-    .sendFile(path.join(__dirname, 'readme.md'));
+  res.status(200).sendFile(path.join(__dirname, "readme.md"));
 });
-
-
 
 const server = app.listen(port || process.env.port, () => {
   console.log(`App listening on port ${port}`);
   console.log("Press Ctrl+C to quit.");
 });
 
-
-
 // QUIERO APRENDER A DESACOPLAR UN HDP SOCKET NEIDER!!!
+//Que gono*** de chorizo...
+const io = require("socket.io")(server);
+const GeoService = require("./services/geolocation.service");
 
-const io = require('socket.io')(server)
+io.on("connection", async socket => {
+  const geoService = new GeoService();
 
-console.log('now it`s time to sokete')
+  const geoid = await geoService.create({
+    socketid: socket.id,
+    start_timestamp: new Date().getTime(),
+    activo: true,
+    deltas: []
+  });
 
-io.on('connection', socket => {
+  socket.on("new-delta", async location => {
+    try {
+      const geo = await geoService.getOne(geoid);
 
-  console.log(`··· socket: ${socket.id} has connected`)
+      geo.deltas.push(location);
+      await geoService.update(geoid, { deltas: geo.deltas });
+    } catch (err) {
+      console.error(err);
+    }
+  });
 
-  socket.on('new-delta', location => {
-    console.log("llegó", location)
-  })
-
-  socket.on('disconnect', () => {
-    console.log(`!!! socket: ${socket.id} has DISconnected`);
+  socket.on("disconnect", async () => {
+    try {
+      await geoService.update(geoid, {
+        end_timestamp: new Date().getTime()
+      });
+    } catch (err) {
+      console.error(err);
+    }
   });
 });
-
 
 module.exports = app;
