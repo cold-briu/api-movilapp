@@ -1,7 +1,6 @@
 const MongoLib = require("../lib/mongo");
 const bcrypt = require("bcrypt");
-const { usersCollectionName } = require('../config/config')
-
+const { usersCollectionName } = require("../config/config");
 
 class UsersService {
   constructor() {
@@ -39,6 +38,13 @@ class UsersService {
   async delete(userid) {
     const user = await this.MongoDB.delete(this.collection, userid);
     return user;
+  }
+
+  async updateMoves(id, data) {
+    const movement = await this.MongoDB.update(this.collection, id, {
+      move: data
+    });
+    return movement;
   }
 }
 

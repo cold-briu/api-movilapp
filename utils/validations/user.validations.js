@@ -22,7 +22,22 @@ function usersSchemaValidator(data) {
       .string()
       .min(5)
       .max(255)
-      .required()
+      .required(),
+    move: joi.object({
+      caminando: joi.boolean().required(),
+      bicicleta: joi.boolean().required(),
+      metro: joi.boolean().required(),
+      taxi: joi.boolean().required(),
+      plataformas: joi.boolean().required(),
+      bus: joi.boolean().required(),
+      moto: joi.boolean().required(),
+      carro: joi.boolean().required(),
+      otro: joi.boolean().required(),
+      descripcion: joi
+        .string()
+        .optional()
+        .max(200)
+    })
   });
 
   return Schema.validate(data);
