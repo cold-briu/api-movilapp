@@ -3,7 +3,7 @@ const { geolocationCollectionName } = require("../config/config");
 
 module.exports = class GeolocationService {
   constructor() {
-    this.collection = "geo";
+    this.collection = geolocationCollectionName;
     this.mongoDB = new MongoLib();
   }
 
