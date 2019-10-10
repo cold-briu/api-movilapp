@@ -27,6 +27,13 @@ module.exports = class GeolocationService {
     return updated;
   }
 
+
+  async delete(id) {
+    const deleted = await this.mongoDB.delete(this.collection, id);
+    return deleted;
+  }
+
+
   async pushGeo(id, data) {
     const rutaid = await this.mongoDB.pushGeoById(this.collection, id, data);
     return rutaid;

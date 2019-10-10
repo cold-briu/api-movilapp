@@ -9,6 +9,7 @@ const publicacionesRoute = require("./routes/publicaciones.route");
 const comentariosRoute = require("./routes/comentarios.route");
 const loginRoute = require("./routes/login.route");
 const usuariosRoute = require("./routes/usuarios.route");
+const geolocationRoute = require('./routes/geolocation.route')
 
 // middlewares
 
@@ -22,6 +23,7 @@ publicacionesRoute(app);
 comentariosRoute(app);
 loginRoute(app);
 usuariosRoute(app);
+geolocationRoute(app)
 
 app.get("/", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "readme.md"));
