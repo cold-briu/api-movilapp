@@ -24,10 +24,6 @@ function comentarioSchemaValidator(data) {
             .max(280)
             .required(),
 
-        foto: joi
-            .string()
-            .default("no_foto_url"),
-
         likes: joi
             .number()
             .integer()

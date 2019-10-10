@@ -2,7 +2,7 @@
 //Que gono*** de chorizo...
 const GeoService = require("../../services/geolocation.service");
 
-module.exports = function(server) {
+module.exports = function (server) {
   const io = require("socket.io")(server);
 
   io.on("connection", async socket => {

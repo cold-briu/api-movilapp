@@ -25,8 +25,8 @@ module.exports = function publicacionesApi(app) {
             async (req, res, next) => {
                 try {
                     let data = req.body
-                    await publicacionesService.createOne(data)
-                    res.status(201).send("melos :3")
+                    const createdID = await publicacionesService.createOne(data)
+                    res.status(201).send(createdID)
                 } catch (err) {
                     next(err);
                 }
