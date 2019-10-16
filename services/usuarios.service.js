@@ -1,7 +1,6 @@
 const MongoLib = require("../lib/mongo");
 const bcrypt = require("bcrypt");
-const { usersCollectionName } = require('../config/config')
-
+const { usersCollectionName } = require("../config/config");
 
 class UsersService {
   constructor() {
@@ -10,8 +9,8 @@ class UsersService {
   }
 
   async register(data) {
-    // const salt = await bcrypt.genSalt(10);
-    // data.password = await bcrypt.hash(data.password, salt);
+    const salt = await bcrypt.genSalt(10);
+    data.password = await bcrypt.hash(data.password, salt);
     const user = await this.MongoDB.create(this.collection, data);
     return user;
   }

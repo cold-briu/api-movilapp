@@ -5,6 +5,7 @@ const {
 } = require("../utils/validations/user.validations");
 const checkDataTypes = require("../middlewares/checkDataTypes");
 const UsersService = require("../services/usuarios.service");
+const bcrypt = require("bcrypt");
 
 module.exports = function usuariosApi(app) {
   app.use("/api/usuarios", router);
@@ -31,12 +32,18 @@ module.exports = function usuariosApi(app) {
     })
     .post(checkDataTypes(usersSchemaValidator), async (req, res, next) => {
       try {
-        if (req.body.password !== req.body.confirm_password)
+        let { name, phone, email, password, confirm_password } = req.body;
+        if (password !== confirm_password)
           return res
             .status(400)
-            .send("passwords do not match")
+            .send({ error: "passwords do not match" })
             .end();
-        const user = await userService.register(req.body);
+        const user = await userService.register({
+          name,
+          phone,
+          email,
+          password
+        });
         res.status(200).send(user);
       } catch (err) {
         next(err);
@@ -48,11 +55,12 @@ module.exports = function usuariosApi(app) {
       const { email, password } = req.body;
       const user = await userService.login(email);
 
-      if (!user) {
-        return res.status(400).json({ authRes: "email not found" });
-      } else if (user.password !== password) {
+      if (!user) return res.status(400).json({ authRes: "email not found" });
+
+      const validPassword = await bcrypt.compare(password, user.password);
+      if (!validPassword)
         return res.status(400).json({ authRes: "wrong pass" });
-      }
+
       res.status(200).send(user._id);
     } catch (err) {
       next(err);
