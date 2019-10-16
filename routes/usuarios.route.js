@@ -1,27 +1,41 @@
 const router = require("express").Router();
 const auth = require("../middlewares/auth");
-const { usersSchemaValidator } = require('../utils/validations/user.validations')
-const checkDataTypes = require('../middlewares/checkDataTypes')
+const {
+  usersSchemaValidator
+} = require("../utils/validations/user.validations");
+const checkDataTypes = require("../middlewares/checkDataTypes");
 const UsersService = require("../services/usuarios.service");
 
 module.exports = function usuariosApi(app) {
-
   app.use("/api/usuarios", router);
 
   const userService = new UsersService();
 
-  router.route("/")
+  router
+    .route("/")
     .get(async (req, res, next) => {
       try {
         const users = await userService.getAll(req.query);
-        if (users.length < 1) return res.status(400).send("user not found").end();
-        res.status(200).send(users).end();
+        if (users.length < 1)
+          return res
+            .status(400)
+            .send("user not found")
+            .end();
+        res
+          .status(200)
+          .send(users)
+          .end();
       } catch (err) {
         next(err);
       }
     })
     .post(checkDataTypes(usersSchemaValidator), async (req, res, next) => {
       try {
+        if (req.body.password !== req.body.confirm_password)
+          return res
+            .status(400)
+            .send("passwords do not match")
+            .end();
         const user = await userService.register(req.body);
         res.status(200).send(user);
       } catch (err) {
@@ -29,7 +43,7 @@ module.exports = function usuariosApi(app) {
       }
     });
 
-  router.post('/login', async (req, res, next) => {
+  router.post("/login", async (req, res, next) => {
     try {
       const { email, password } = req.body;
       const user = await userService.login(email);
@@ -43,10 +57,10 @@ module.exports = function usuariosApi(app) {
     } catch (err) {
       next(err);
     }
-  })
+  });
 
-
-  router.route("/:id")
+  router
+    .route("/:id")
     // .all(auth)
     .get(async (req, res, next) => {
       try {
@@ -73,6 +87,4 @@ module.exports = function usuariosApi(app) {
         next(err);
       }
     });
-
-}
-
+};

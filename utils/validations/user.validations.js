@@ -7,11 +7,10 @@ function usersSchemaValidator(data) {
       .min(2)
       .max(50)
       .required(),
-    lastname: joi
+    phone: joi
       .string()
       .min(3)
-      .max(60)
-      .required(),
+      .max(60),
     email: joi
       .string()
       .min(6)
@@ -22,7 +21,8 @@ function usersSchemaValidator(data) {
       .string()
       .min(5)
       .max(255)
-      .required()
+      .required(),
+    confirm_password: joi.string().required()
   });
 
   return Schema.validate(data);
